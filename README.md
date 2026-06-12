@@ -124,7 +124,13 @@ We welcome contributions from everyone! 💖 Whether you're a developer, designe
 
 ## 📜 Disclaimer
 
-This tool is independent and not affiliated with Google. "Antigravity" and "Gemini" are trademarks of Google LLC. It is intended for development purposes.
+**IMPORTANT: Please Read Carefully**
+
+1. **Independent Project:** Open Anticentravity is an independent, community-driven open-source project. It is **NOT** an official product of Google LLC, Alphabet Inc., or any of its affiliates. This project is not endorsed, sponsored, or supported by Google.
+2. **Trademarks:** "Antigravity", "Gemini", "Google", and all related logos and brand names are trademarks or registered trademarks of Google LLC. The use of these names in this project is strictly for identification and descriptive purposes and does not imply any affiliation with or endorsement by the trademark owners.
+3. **Experimental Software:** This tool is currently in an experimental/beta stage. It is provided "as is" without any warranties of any kind, express or implied. The authors and contributors are not responsible for any data loss, security vulnerabilities, or other issues arising from the use of this software.
+4. **Research & Development:** Open Anticentravity is intended for research and development purposes only. It should not be used in production environments without thorough independent verification.
+5. **Third-Party Services:** Users are responsible for their own use of third-party AI models and APIs (including but not limited to Google Gemini, OpenAI, and Anthropic). You must comply with the respective Terms of Service and Privacy Policies of those providers.
 
 ## ⚖️ License
 
