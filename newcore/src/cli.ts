@@ -5,6 +5,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 import { Command } from 'commander';
+import chalk from 'chalk';
 import { loadConfig } from './config/index.js';
 import { AgentOrchestrator } from './orchestrator/index.js';
 import { startServer } from './server.js';
@@ -14,6 +15,17 @@ import * as agentsTable from './db/tables/agents.js';
 import * as costTable from './db/tables/cost-events.js';
 import { createBackup, listBackups } from './db/backup.js';
 import { migrationStatus } from './db/migrate.js';
+
+const BANNER = `${chalk.cyan.bold(`   ____                   ______               __                       _ __       \n  / __ \\\\____  ___  ____  / ____/__  ____  / /__________ __   __(_) /_ __  __\n / / / / __ \\\\/ _ \\\\/ __ \\\\/ /   / _ \\\\/ __ \\\\/ __/ ___/ __ \\\` | / / / __/ / / / \n/ /_/ / /_/ /  __/ / / / /___/  __/ / / / /_/ /  / /_/ /| |/ / / /_/ /_/ /  \n\\\\____/ .___/\\\\___/_/ /_/\\\\____/\\\\___/_/ /_/\\\\__/_/   \\\\__,_/ |___/_/\\\\__/\\\\__, /   \n    /_/                                                            /____/`)}\n  ${chalk.gray('Universal AI Agent Orchestrator with Formal Verification')}\n`;
+
+/** Prints the cool banner with an optional subtitle. */
+function printBanner(subtitle?: string) {
+  console.log(BANNER);
+  if (subtitle) {
+    console.log(`  ${chalk.yellow('⚡')} ${chalk.white.bold('OpenCentravity')} — ${chalk.white(subtitle)}`);
+    console.log(`  ${chalk.gray('══════════════════════════════════════════════════════════════════════════')}\n`);
+  }
+}
 
 const program = new Command();
 
@@ -34,8 +46,7 @@ program
     const config = loadConfig();
     const engine = new AgentOrchestrator();
 
-    console.log('\n  ⚡ OpenCentravity Engine v0.1.0');
-    console.log('  ════════════════════════════════\n');
+    printBanner('Engine v0.1.0');
 
     const info = await engine.getEngineInfo();
     console.log(`  Model: ${opts.model ?? config.defaultModel}`);
@@ -108,7 +119,8 @@ program
     const engine = new AgentOrchestrator();
     const model = opts.model ?? config.defaultModel;
 
-    console.log(`\n  ⚡ OpenCentravity Chat (model: ${model})`);
+    printBanner('Chat');
+    console.log(`  Model: ${model}`);
     console.log('  Type your message and press Enter. Ctrl+C to exit.\n');
 
     const readline = await import('readline');
@@ -149,7 +161,8 @@ program
     const providers = await engine.getGateway().getAvailableProviders();
     const models = engine.getGateway().getAvailableModels();
 
-    console.log('\n  ⚡ Available Providers\n');
+    printBanner('Models & Providers');
+    console.log('  Available Providers:');
     for (const p of providers) {
       console.log(`    ✅ ${p}`);
     }
@@ -190,8 +203,7 @@ program
     const engine = new AgentOrchestrator();
     const info = await engine.getEngineInfo();
 
-    console.log('\n  ⚡ OpenCentravity Engine Status');
-    console.log('  ═══════════════════════════════');
+    printBanner('Engine Status');
     console.log(`  Version: ${info.version}`);
     console.log(`  Default Model: ${info.defaultModel}`);
     console.log(`  Providers: ${(info.availableProviders as string[]).join(', ')}`);
